@@ -1,10 +1,6 @@
 # Autotest Framework Template
 This repository contains an autotest framework template on Java.
 
-Project structure description can be found here: [Framework Description](https://dev.yalantis.com/wiki/display/kb/Framework+Description).
-
-The technology stack is described here: [Technology Stack](https://dev.yalantis.com/wiki/display/kb/Technology+Stack)
-
 
 **Before testing make sure that you have already set JAVA_HOME, M2_HOME, ANDROID_HOME (for android app testing) environment variables.**
 
