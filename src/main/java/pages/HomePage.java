@@ -1,6 +1,5 @@
 package pages;
 
-import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebElement;
@@ -20,16 +19,42 @@ public class HomePage extends  BasePage{
         waitUntilVisible(topSearchField);
         topSearchField.click();
         topSearchField.sendKeys(searchParams);
-        log.info("Search parameters was entered");
+        log.info("Search parameters were entered");
     }
 
     @FindBy(name = "submit_search")
     public  WebElement submitSearchButton;
 
-    @Step("Submit search")
     public  void  submitSearch() {
         submitSearchButton.click();
     }
 
+    @FindBy(className = "login")
+    public WebElement signInButton;
 
+    public void clickSignIn() {
+        signInButton.click();
+    }
+
+    @FindBy(id = "email_create")
+    public  WebElement emailSignUpField;
+
+    public void inputSignUpEmail(String email) {
+        emailSignUpField.click();
+        emailSignUpField.sendKeys(email);
+    }
+
+    @FindBy(id = "SubmitCreate")
+    public WebElement createAccountButton;
+
+    public void clickCreateAccountButton() {
+        createAccountButton.click();
+    }
+
+    @Step("Create user")
+    public  void createUser(){
+        clickSignIn();
+        inputSignUpEmail(int_random + "user@test.com");
+        clickCreateAccountButton();
+    }
 }
