@@ -10,6 +10,7 @@ import pages.HomePage;
 @Epic("HomePage")
 @Feature("Home Page Search")
 @Listeners(AllureListener.class)
+
 public class HomeTest extends BaseTest{
 
     HomePage homePage;
@@ -27,7 +28,7 @@ public class HomeTest extends BaseTest{
     }
 
     @Test
-    @Story("As a User I want ro be able to proceed to account creation page")
+    @Story("As a User I want to be able to proceed to account creation page")
     public void createUser() {
         homePage = new HomePage();
         homePage.createUser();

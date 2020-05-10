@@ -10,4 +10,8 @@ public class SearchResultPage extends BasePage{
     @FindBy(className = "product-container")
     public WebElement resultCell;
 
+    public WebElement resultsExist() {
+        return resultCell;
+    }
+
 }
