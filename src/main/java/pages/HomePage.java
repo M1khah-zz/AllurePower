@@ -52,7 +52,6 @@ public class HomePage extends  BasePage{
         createAccountButton.click();
     }
 
-    @Step("Create user")
     public void createUser(){
         clickSignIn();
         inputSignUpEmail(int_random + "user@test.com");
@@ -73,4 +72,9 @@ public class HomePage extends  BasePage{
     public String getAuthHeader(){
         return authHeader.getText();
     }
+
+    @FindBy(id = "create_account_error")
+    public WebElement accountError;
+
+
 }

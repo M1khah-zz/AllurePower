@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.*;
 
 
 @Epic("HomePage")
@@ -27,7 +27,7 @@ public class HomeTest extends BaseTest{
         homePage = new HomePage();
         homePage.inputSearchParameters("res");
         homePage.submitSearch();
-        assertThat(homePage.getSearchName(), equals("RES"));
+        assertEquals(homePage.getSearchName(), ("\"RES\""));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class HomeTest extends BaseTest{
     public void createUser() {
         homePage = new HomePage();
         homePage.clickSignIn();
-        assertThat(homePage.getAuthHeader(), equals("Authentication"));
+        assertEquals(homePage.getAuthHeader(), ("AUTHENTICATION"));
         homePage.createUser();
     }
 
@@ -50,5 +50,7 @@ public class HomeTest extends BaseTest{
         homePage = new HomePage();
         homePage.clickSignIn();
         homePage.inputSignUpEmail(email);
+        homePage.clickCreateAccountButton();
+        assertFalse(homePage.accountError.isDisplayed());
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Functional" parallel="false">
-    <test name="Search">
+    <test name="Search/Registration">
         <classes>
             <class name="com.atqc.tests.HomeTest"/>
             <class name="com.atqc.tests.CreateAccountTest"/>

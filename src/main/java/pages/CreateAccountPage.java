@@ -5,12 +5,16 @@ import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.DataProvider;
+
+import static framework.Wait.waitUntilVisible;
 
 @Log4j
 public class CreateAccountPage extends BasePage {
 
-    @FindBy(className = "page-heading")
+    @FindBy(xpath = "//*[@class='login']")
+    public WebElement signInButton;
+
+    @FindBy(xpath = "//*[@class='page-heading']")
     public WebElement pageHeading;
 
     @FindBy(id = "uniform-id_gender1")
@@ -28,7 +32,7 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "company")
     public WebElement companyField;
 
-    @FindBy(id = "address")
+    @FindBy(id = "address1")
     public WebElement addressField;
 
     @FindBy(id = "city")
@@ -51,6 +55,7 @@ public class CreateAccountPage extends BasePage {
 
 
     public void selectMaleGender() {
+        waitUntilVisible(maleGenderButton);
         maleGenderButton.click();
     }
 
@@ -88,12 +93,12 @@ public class CreateAccountPage extends BasePage {
 
     public void selectCountry() {
         Select list = new Select(countrySelector);
-        list.selectByIndex(0);
+        list.selectByValue("21");
     }
 
-    public void selectState(String state) {
+    public void selectState() {
         Select list = new Select(stateSelector);
-        list.selectByVisibleText(state);
+        list.selectByValue("2");
     }
 
     public void clickRegisterButton(){
@@ -104,8 +109,36 @@ public class CreateAccountPage extends BasePage {
         return pageHeading.getText();
     }
 
-    @Step("Fill in user details and reggister")
+    public void clickSignIn() {
+        waitUntilVisible(signInButton);
+        signInButton.click();
+    }
+
+    @FindBy(id = "SubmitCreate")
+    public WebElement createAccountButton;
+
+    public void clickCreateAccountButton() {
+        createAccountButton.click();
+    }
+
+    @FindBy(id = "email_create")
+    public  WebElement emailSignUpField;
+
+    public void inputSignUpEmail(String email) {
+        emailSignUpField.click();
+        emailSignUpField.sendKeys(email);
+    }
+
+    public void createUser(){
+        clickSignIn();
+        inputSignUpEmail(int_random + "user@test.com");
+        clickCreateAccountButton();
+        log.info("Moved to create account screen");
+    }
+
+    @Step("Fill in user details and register")
     public void registerUser(){
+
         selectMaleGender();
         inputFirstname("Kir");
         inputLastname("Alexeyenko");
@@ -116,7 +149,7 @@ public class CreateAccountPage extends BasePage {
         inputPostCode("50049");
         inputMobilePhone("123456789");
         selectCountry();
-        selectState("Nevada");
+        selectState();
         clickRegisterButton();
         log.info("User created");
     }

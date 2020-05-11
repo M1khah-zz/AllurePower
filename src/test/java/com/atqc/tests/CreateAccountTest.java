@@ -5,7 +5,8 @@ import io.qameta.allure.*;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.CreateAccountPage;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.*;
+
 
 @Epic("CreateAccountPage")
 @Feature("Create account with all its details")
@@ -19,8 +20,9 @@ public class CreateAccountTest extends  BaseTest{
     @Story("As a user I want to create an account")
     public void registerUserWithInfo(){
         createAccountPage = new CreateAccountPage();
-        assertThat(createAccountPage.getPageTitle(), equals("Create an account"));
+        createAccountPage.createUser();
+        assertEquals(createAccountPage.getPageTitle(), ("AUTHENTICATION"));
         createAccountPage.registerUser();
-        assertThat(createAccountPage.getPageTitle(), equals("My account"));
+        assertEquals(createAccountPage.getPageTitle(), ("MY ACCOUNT"));
     }
 }
