@@ -3,7 +3,8 @@
 <suite name="Functional" parallel="false">
     <test name="Search">
         <classes>
-            <class name="com.atqc.tests.GoogleTest"/>
+            <class name="com.atqc.tests.HomeTest"/>
+            <class name="com.atqc.tests.CreateAccountTest"/>
         </classes>
     </test>
 </suite>

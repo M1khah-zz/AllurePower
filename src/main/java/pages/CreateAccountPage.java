@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
 
 @Log4j
 public class CreateAccountPage extends BasePage {
@@ -23,12 +24,6 @@ public class CreateAccountPage extends BasePage {
 
     @FindBy(id = "passwd")
     public WebElement passwordField;
-
-    @FindBy(id = "firstname")
-    public WebElement addressFirstnameField;
-
-    @FindBy(id = "lastname")
-    public WebElement addressLastnameField;
 
     @FindBy(id = "company")
     public WebElement companyField;
@@ -69,14 +64,6 @@ public class CreateAccountPage extends BasePage {
 
     public void inputPassword(String psswd) {
         passwordField.sendKeys(psswd);
-    }
-
-    public void inputAddressFirstname(String addressFN) {
-        addressFirstnameField.sendKeys(addressFN);
-    }
-
-    public void inputAddressLastname(String addressLN) {
-        addressLastnameField.sendKeys(addressLN);
     }
 
     public void inputCompanyName(String companyName) {
@@ -123,8 +110,6 @@ public class CreateAccountPage extends BasePage {
         inputFirstname("Kir");
         inputLastname("Alexeyenko");
         inputPassword("qwerty");
-        inputAddressFirstname("Kirill");
-        inputAddressLastname("Alex");
         inputCompanyName("Yalantis");
         inputAddress("Valley");
         inputCityName("Dnipro");
@@ -133,6 +118,7 @@ public class CreateAccountPage extends BasePage {
         selectCountry();
         selectState("Nevada");
         clickRegisterButton();
+        log.info("User created");
     }
 
 }

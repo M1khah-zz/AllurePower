@@ -29,10 +29,11 @@ public class HomePage extends  BasePage{
         submitSearchButton.click();
     }
 
-    @FindBy(className = "login")
+    @FindBy(xpath = "//*[@class='login']")
     public WebElement signInButton;
 
     public void clickSignIn() {
+        waitUntilVisible(signInButton);
         signInButton.click();
     }
 
@@ -52,9 +53,24 @@ public class HomePage extends  BasePage{
     }
 
     @Step("Create user")
-    public  void createUser(){
+    public void createUser(){
         clickSignIn();
         inputSignUpEmail(int_random + "user@test.com");
         clickCreateAccountButton();
+        log.info("Moved to create account screen");
+    }
+
+    @FindBy(className = "lighter")
+    public WebElement searchName;
+
+    public String getSearchName() {
+        return searchName.getText();
+    }
+
+    @FindBy(className = "page-heading")
+    public WebElement authHeader;
+
+    public String getAuthHeader(){
+        return authHeader.getText();
     }
 }
