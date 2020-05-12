@@ -94,6 +94,7 @@ public class CreateAccountPage extends BasePage {
     }
 
     public void inputPostCode(String postCode){
+        waitUntilVisible(postcodeField);
         postcodeField.sendKeys(postCode);
         log.info("Postcode entered");
     }
@@ -162,7 +163,7 @@ public class CreateAccountPage extends BasePage {
         inputCompanyName(faker.company().name());
         inputAddress(faker.address().streetAddress());
         inputCityName(faker.address().city());
-        inputPostCode(faker.address().zipCode());
+        inputPostCode(faker.number().digits(5));
         inputMobilePhone(faker.phoneNumber().cellPhone());
         selectCountry();
         selectState();
