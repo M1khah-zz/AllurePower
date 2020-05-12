@@ -58,7 +58,7 @@ public class CreateAccountPage extends BasePage {
 
     @FindBy(id = "email_create")
     public  WebElement emailSignUpField;
-    
+
     public void selectMaleGender() {
         waitUntilVisible(maleGenderButton);
         maleGenderButton.click();
@@ -142,7 +142,7 @@ public class CreateAccountPage extends BasePage {
 
     public void createUser(){
         clickSignIn();
-        inputSignUpEmail(int_random + "user@test.com");
+        inputSignUpEmail(utilities.testData.testEmail);
         clickCreateAccountButton();
         log.info("Moved to create account screen");
     }
