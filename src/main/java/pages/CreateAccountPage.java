@@ -1,5 +1,6 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,8 @@ import static framework.Wait.waitUntilVisible;
 
 @Log4j
 public class CreateAccountPage extends BasePage {
+
+    Faker faker = new Faker();
 
     @FindBy(xpath = "//*[@class='login']")
     public WebElement signInButton;
@@ -129,20 +132,23 @@ public class CreateAccountPage extends BasePage {
     public void clickSignIn() {
         waitUntilVisible(signInButton);
         signInButton.click();
+        log.info("Clicked log in button");
     }
 
     public void clickCreateAccountButton() {
         createAccountButton.click();
+        log.info("Creaate account button clicked");
     }
 
     public void inputSignUpEmail(String email) {
         emailSignUpField.click();
         emailSignUpField.sendKeys(email);
+        log.info("Email inputted");
     }
 
     public void createUser(){
         clickSignIn();
-        inputSignUpEmail(utilities.testData.testEmail);
+        inputSignUpEmail(faker.internet().emailAddress());
         clickCreateAccountButton();
         log.info("Moved to create account screen");
     }
@@ -150,14 +156,14 @@ public class CreateAccountPage extends BasePage {
     @Step("Fill in user details and register")
     public void registerUser(){
         selectMaleGender();
-        inputFirstname("Kir");
-        inputLastname("Alexeyenko");
-        inputPassword("qwerty");
-        inputCompanyName("Yalantis");
-        inputAddress("Valley");
-        inputCityName("Dnipro");
-        inputPostCode("50049");
-        inputMobilePhone("123456789");
+        inputFirstname(faker.funnyName().name());
+        inputLastname(faker.ancient().primordial());
+        inputPassword(faker.internet().password());
+        inputCompanyName(faker.company().name());
+        inputAddress(faker.address().streetAddress());
+        inputCityName(faker.address().city());
+        inputPostCode(faker.address().zipCode());
+        inputMobilePhone(faker.phoneNumber().cellPhone());
         selectCountry();
         selectState();
         clickRegisterButton();

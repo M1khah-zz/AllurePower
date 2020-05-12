@@ -1,5 +1,6 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,8 @@ import static framework.Wait.waitUntilVisible;
 
 @Log4j
 public class HomePage extends  BasePage{
+
+    Faker faker = new Faker();
 
     @FindBy(id = "search_query_top")
     public WebElement topSearchField;
@@ -71,7 +74,7 @@ public class HomePage extends  BasePage{
 
     public void createUser(){
         clickSignIn();
-        inputSignUpEmail(int_random + "user@test.com");
+        inputSignUpEmail(faker.internet().emailAddress());
         clickCreateAccountButton();
         log.info("Moved to create account screen");
     }
