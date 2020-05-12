@@ -1,7 +1,6 @@
 package com.atqc.tests;
 
 import framework.AllureListener;
-import framework.DriverActions;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
@@ -23,7 +22,6 @@ public class HomeTest extends BaseTest{
     @Description("Test for search on Homepage")
 
     public void performSearchOnHomePage() {
-        DriverActions.open("http://automationpractice.com/index.php");
         homePage = new HomePage();
         homePage.inputSearchParameters("res");
         homePage.submitSearch();
