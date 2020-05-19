@@ -62,6 +62,9 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "email_create")
     public  WebElement emailSignUpField;
 
+    @FindBy(xpath = "//*[@id='create_account_error']/ol/li")
+    public WebElement emailError;
+
     public void selectMaleGender() {
         waitUntilVisible(maleGenderButton);
         maleGenderButton.click();
@@ -147,15 +150,40 @@ public class CreateAccountPage extends BasePage {
         log.info("Email inputted");
     }
 
-    public void createUser(){
+    public void createAccountValidEmail(){
         clickSignIn();
         inputSignUpEmail(faker.internet().emailAddress());
         clickCreateAccountButton();
         log.info("Moved to create account screen");
     }
 
-    @Step("Fill in user details and register")
-    public void registerUser(){
+    public void createAccountInvalid(String invalidEmail){
+        clickSignIn();
+        inputSignUpEmail(invalidEmail);
+        clickCreateAccountButton();
+        waitUntilVisible(emailError);
+        log.info("Error pop-up appeared");
+    }
+
+    @Step("Fill in valid user details and register")
+    public void registerValidUser(){
+        selectMaleGender();
+        inputFirstname(faker.funnyName().name());
+        inputLastname(faker.ancient().primordial());
+        inputPassword(faker.internet().password());
+        inputCompanyName(faker.company().name());
+        inputAddress(faker.address().streetAddress());
+        inputCityName(faker.address().city());
+        inputPostCode(faker.number().digits(5));
+        inputMobilePhone(faker.phoneNumber().cellPhone());
+        selectCountry();
+        selectState();
+        clickRegisterButton();
+        log.info("User created");
+    }
+
+    @Step("Fill in valid user details and register")
+    public void registerInvalidUser(){
         selectMaleGender();
         inputFirstname(faker.funnyName().name());
         inputLastname(faker.ancient().primordial());
